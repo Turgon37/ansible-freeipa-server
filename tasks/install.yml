@@ -1,0 +1,13 @@
+---
+
+- name: Install main packages
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items: '{{ freeipa_server__packages_names|list }}'
+
+- name: Install features packages
+  package:
+    name: '{{ freeipa_server__feature_packages_names[item] }}'
+    state: present
+  with_items: '{{ freeipa_server__enabled_features|list }}'

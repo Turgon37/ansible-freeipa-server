@@ -1,0 +1,13 @@
+---
+# defaults file for ansible-freeipa-server
+
+### INSTALL CONFIGURATION
+# ---------------------------------------
+freeipa_server__packages_names:
+  - ipa-server
+
+freeipa_server__feature_packages_names:
+  dns:
+    - ipa-server-dns
+
+freeipa_server__enabled_features: []

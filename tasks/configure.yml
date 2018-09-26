@@ -1,0 +1,11 @@
+---
+
+- name: Check if server is configured
+  stat:
+    path: /var/lib/ipa/sysrestore/sysrestore.state
+  register: _freeipa_server__install_state
+
+- name: Fail if ipa-server-install was not run
+  fail:
+    msg: You must run ipa-server-install manually
+  when: not _freeipa_server__install_state.stat.exists
