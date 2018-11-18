@@ -9,3 +9,17 @@
   fail:
     msg: You must run ipa-server-install manually
   when: not _freeipa_server__install_state.stat.exists
+
+- name: Configure Listen IP for httpd
+  lineinfile:
+    path: '{{ item.path }}'
+    line: 'Listen {{ freeipa_server__listen_ip }}:{{ item.port }}'
+    insertafter: '^#Listen '
+    regexp: '^Listen '
+    state: present
+  with_items:
+    - path: /etc/httpd/conf/httpd.conf
+      port: 80
+    - path: /etc/httpd/conf.d/nss.conf
+      port: 443
+  notify: ['restart-freeipa-httpd']

@@ -1,6 +1,10 @@
 ---
 # defaults file for ansible-freeipa-server
 
+# Enable facts deploiement
+freeipa_server__facts: true
+
+
 ### INSTALL CONFIGURATION
 # ---------------------------------------
 freeipa_server__packages_names:
@@ -11,3 +15,20 @@ freeipa_server__feature_packages_names:
     - ipa-server-dns
 
 freeipa_server__enabled_features: []
+
+
+### SERVICES CONFIGURATION
+# ---------------------------------------
+# Name of httpd sub service
+freeipa_server__httpd_service_name: httpd
+
+# If true, all freeipa server daemon must be enabled
+freeipa_server__service_enabled: true
+
+
+### FREE IPA CONFIGURATION
+# ---------------------------------------
+
+# Define a specific ip address on which freeipa services
+# will listen on
+freeipa_server__listen_ip: 0.0.0.0

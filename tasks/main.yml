@@ -19,3 +19,8 @@
 - name: Importing configurations tasks
   import_tasks: configure.yml
   tags: ['freeipa-server', 'freeipa-server-configure']
+
+- name: Optionally including facts tasks
+  include_tasks: facts.yml
+  when: freeipa_server__facts|bool
+  tags: ['freeipa-server', 'freeipa-server-facts']

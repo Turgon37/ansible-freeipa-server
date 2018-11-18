@@ -1,0 +1,8 @@
+---
+# handlers file for ansible-freeipa-server
+
+- name: restart-freeipa-httpd
+  service:
+    name: '{{ freeipa_server__httpd_service_name }}'
+    state: restarted
+  when: freeipa_server__service_enabled|bool
